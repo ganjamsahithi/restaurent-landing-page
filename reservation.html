@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Table Reservation</h2>
+    <form id="reservationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="reservationResult"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var reservationForm = document.getElementById("reservationForm");
+            var reservationResult = document.getElementById("reservationResult");
+            
+            reservationForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                
+                var name = document.getElementById("name").value;
+                var date = document.getElementById("date").value;
+                var time = document.getElementById("time").value;
+                
+                // Check if the date and time slot is available
+                if (isReservationAvailable(date, time)) {
+                    // Display reservation confirmation
+                    reservationResult.innerText = "Reservation confirmed for " + name + " on " + date + " at " + time + ".";
+                } else {
+                    // Display error message if the slot is already reserved
+                    reservationResult.innerText = "Sorry, this time slot is already reserved.";
+                    reservationResult.classList.add("error");
+                }
+            });
+
+            // Function to check if the reservation slot is available
+            function isReservationAvailable(date, time) {
+                // In this example, assume reservations are not allowed for simplicity
+                // You can implement logic to check against a database or some other data source
+                return true;
+            }
+        });
+    </script>
+</body>
+</html>
