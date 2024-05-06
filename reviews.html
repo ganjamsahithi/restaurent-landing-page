@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        /* CSS styles for the reviews page */
+    </style>
+</head>
+<body>
+    <div class="tab-content">
+        <h2>Reviews</h2>
+        <!-- Reviews content goes here -->
+<h2>Customer Reviews</h2>
+                <p>See what our customers are saying:</p>
+                <ul>
+                    <li class="review">
+                        <p>"Great food and friendly service!" - John</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </li>
+                    <li class="review">
+                        <p>"The atmosphere is amazing, highly recommend!" - Sarah</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </li>
+                    <li class="review">
+                        <p>"Best restaurant in town!" - Mike</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+    </div>
+<script>
+const reviews = document.querySelectorAll('.review');
+
+            reviews.forEach(review => {
+                const ratingDiv = review.querySelector('.rating');
+                const stars = ratingDiv.querySelectorAll('.star');
+
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.getAttribute('data-value'));
+
+                        // Highlight the clicked star and remove highlight from other stars in the same review
+                        stars.forEach(s => {
+                            if (parseInt(s.getAttribute('data-value')) <= rating) {
+                                s.classList.add('selected');
+                            } else {
+                                s.classList.remove('selected');
+                            }
+                        });
+
+                        // Update the rating data attribute
+                        ratingDiv.setAttribute('data-rating', rating);
+                    });
+                });
+            });
+
+        });
+</script>
+</body>
+</html>
